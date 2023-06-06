@@ -40,6 +40,9 @@ public static void run()
             String password = m2.group("passwordUser");
             result = registerMenuController.setANewPassword(password);
             System.out.println(result);
+            if(result.equals("Your account has been successfully created")){
+                registerMenuController.setnewCustomer(name,password);
+            }
         }
         else if(m3.matches()){
             System.out.println("Back to login menu!");

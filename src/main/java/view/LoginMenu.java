@@ -30,7 +30,7 @@ static int delayTime;
     System.out.println("Don't have an account? Whenever you want, type  (create a new account)  to enter Signup Menu.");
     String r1 = "create new account";
     Pattern p1 = Pattern.compile(r1);
-    String r2 = "LOGIN ADMIN\\s+(?<nameAdmin>((\\w)|((\\s)|(\\W)))*)\\s+(?<passwordAdmin>((\\w)|((\\s)|(\\W)))*)";
+    String r2 = "LOGIN ADMIN\\s+(?<nameAdmin>((\\w)|((\\s)|(\\W)))*)\\s+(?<passwordAdmin>((\\w)|((\\s)|(\\W)))*)\\s+";
     Pattern p2 = Pattern.compile(r2);
     String r3 = "LOGIN USER\\s+(?<nameUser>((\\w)|((\\s)|(\\W)))*)\\s+(?<passwordUser>((\\w)|((\\s)|(\\W)))*)";
     Pattern p3 = Pattern.compile(r3);

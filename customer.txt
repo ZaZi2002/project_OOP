@@ -1,0 +1,23 @@
+{
+  "customers": [
+    {
+      "node": 0,
+      "Cart": [],
+      "name": "MAHDI",
+      "password": "Mehr12?"
+    },
+    {
+      "node": 0,
+      "Cart": [],
+      "name": "MOHSEN",
+      "password": "Mehr12?"
+    },
+    {
+      "node": 0,
+      "Cart": [],
+      "name": "salam",
+      "password": "Mehr12?"
+    }
+  ],
+  "resturantOwners": []
+}
