@@ -1,6 +1,8 @@
 package view;
 import controller.LoginMenuController;
 import controller.RegisterMenuController;
+import model.FileManager;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class LoginMenu {
@@ -58,6 +60,7 @@ static int delayTime;
             String password = m3.group("passwordUser");
         }
         else if(m4.matches()){
+            FileManager.saveAllDatas();
             return;
         }
         else{
