@@ -1,16 +1,18 @@
 {
   "customers": [
     {
-      "node": 0,
       "Cart": [],
-      "name": "MMD",
-      "password": "Mehr12?"
+      "name": "mehrshad",
+      "node": 5,
+      "password": "Mehr1383?",
+      "SecurityQuestion": "18/6/1383"
     },
     {
-      "node": 0,
       "Cart": [],
-      "name": "Melo",
-      "password": "Mehr12?"
+      "name": "mmd",
+      "node": 4,
+      "password": "Mmd1383?",
+      "SecurityQuestion": "30/6/1383"
     }
   ],
   "resturantOwners": []

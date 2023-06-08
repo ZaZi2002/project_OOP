@@ -1,6 +1,7 @@
 package view;
 
 import controller.RegisterMenuController;
+import model.Customer;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,9 +16,9 @@ public class RegisterMenu {
     }
 public static void run()
 {
-    String r1 = "ADD ADMIN\\s+(?<nameAdmin>((\\w)|((\\s)|(\\W)))*)\\s+(?<passwordAdmin>((\\w)|((\\s)|(\\W)))*)";
+    String r1 = "ADD ADMIN\\s+(?<nameAdmin>((\\w)|((\\s)|(\\W)))*)\\s+(?<passwordAdmin>((\\w)|((\\s)|(\\W)))*)\\s(?<node>(\\d)+)";
     Pattern p1 = Pattern.compile(r1);
-    String r2 = "ADD USER\\s+(?<nameUser>((\\w)|((\\s)|(\\W)))*)\\s+(?<passwordUser>((\\w)|((\\s)|(\\W)))*)";
+    String r2 = "ADD USER\\s+(?<nameUser>((\\w)|((\\s)|(\\W)))*)\\s+(?<passwordUser>((\\w)|((\\s)|(\\W)))*)\\s(?<node1>(\\d)+)";
     Pattern p2 = Pattern.compile(r2);
     String r3 = "Back";
     Pattern p3 = Pattern.compile(r3);
@@ -32,16 +33,37 @@ public static void run()
         {
             String name = m1.group("nameAdmin");
             String password = m1.group("passwordAdmin");
-            result = registerMenuController.setANewPassword(password);
-            System.out.println(result);
+            int node = Integer.parseInt(m1.group("node"));
+            if(Customer.printindexbycustomname(name)<0) {
+                result = registerMenuController.setANewPassword(password);
+                if(!result.equals("Your account has been successfully created"))
+                    System.out.println(result);
+                if (result.equals("Your account has been successfully created")) {
+                    System.out.println("Security question: Write down your day, month, and year of birth, and remember how to write it.");
+                    command = Menu.getScanner().nextLine();
+                    registerMenuController.setnewResturantOwner(name, password, node,command);
+                }
+            }
+            else {
+                System.out.println("This name already exists");
+            }
         }
         else if(m2.matches()){
             String name = m2.group("nameUser");
             String password = m2.group("passwordUser");
-            result = registerMenuController.setANewPassword(password);
-            System.out.println(result);
-            if(result.equals("Your account has been successfully created")){
-                registerMenuController.setnewCustomer(name,password);
+            int node = Integer.parseInt(m2.group("node1"));
+            if(Customer.printindexbycustomname(name)<0) {
+                result = registerMenuController.setANewPassword(password);
+                if(!result.equals("Your account has been successfully created"))
+                    System.out.println(result);
+                if (result.equals("Your account has been successfully created")) {
+                    System.out.println("Security question: Write down your day, month, and year of birth, and remember how to write it.");
+                    command = Menu.getScanner().nextLine();
+                    registerMenuController.setnewCustomer(name, password, node,command);
+                }
+            }
+            else {
+                System.out.println("This name already exists");
             }
         }
         else if(m3.matches()){

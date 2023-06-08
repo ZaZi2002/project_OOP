@@ -1,18 +1,24 @@
 package view;
 
 import controller.AdminMenuController;
+import controller.CustomerMenuController;
+import model.Customer;
+import model.ResturantOwner;
 
 import java.util.regex.Matcher;
 
 public class AdminMenu {
     private AdminMenuController adminMenuController;
-    public void run()
+    private ResturantOwner resturantOwner;
+    public AdminMenu(ResturantOwner loggedResturantOwner) {
+        this.adminMenuController = new AdminMenuController(this);
+        this.resturantOwner=loggedResturantOwner;
+    }
+    public static void run()
     {
         Matcher matcher;
         String command ;
-        while (true){
-            command = Menu.getScanner().nextLine();
-
+        System.out.println("Hi");
         }
     }
-}
+

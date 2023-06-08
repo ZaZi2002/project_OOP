@@ -1,19 +1,11 @@
 package controller;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import model.Customer;
-import model.FileManager;
-import view.Main;
+import model.ResturantOwner;
+import view.AdminMenu;
+import view.CostumerMenu;
 import view.Menu;
 import view.RegisterMenu;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Scanner;
 
 
 public class RegisterMenuController {
@@ -54,16 +46,31 @@ public class RegisterMenuController {
         else return "";
     }
 
-    public void setnewCustomer(String name, String password) {
-            boolean checker = true;
-            if (checker) {
-                Customer newcustomer = new Customer(name, password);
-                FileManager.getFileManagerInstance().customers.add(newcustomer);
-                System.out.println("Registration was successful");
-            } else {
-                System.out.println("This name already exists");
-            }
-
+    public void setnewCustomer(String name, String password, int node,String securityquestion) {
+        if (Customer.printindexbycustomname(name) < 0) {
+            System.out.println("Registration was successful");
+            Customer customer = new Customer(name, password, node,securityquestion);
+            CostumerMenu costumerMenu = new CostumerMenu(customer);
+            costumerMenu.run();
+        }
+        else
+        {
+            System.out.println("This name already exists");
+        }
     }
+    public void setnewResturantOwner(String name, String password, int node,String securityquestion) {
+        if (ResturantOwner.printindexbyResturantOwnername(name) < 0) {
+            System.out.println("Registration was successful");
+            ResturantOwner resturantOwner = new ResturantOwner(name, password, node,securityquestion);
+            AdminMenu adminMenu = new AdminMenu(resturantOwner);
+            adminMenu.run();
+        }
+        else
+        {
+            System.out.println("This name already exists");
+        }
+    }
+
 }
+
 

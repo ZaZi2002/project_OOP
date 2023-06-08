@@ -3,13 +3,16 @@ package model;
 public class User {
 
     private String name;
+    private int node;
 
     private String password;
-
-    public User(String name , String password)
+    private String SecurityQuestion;
+    public User(String name , String password,int node,String SecurityQuestion)
     {
         this.name = name;
         this.password = password;
+        this.node = node;
+        this.SecurityQuestion=SecurityQuestion;
     }
 
     public String getName() {
@@ -26,5 +29,21 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getNode() {
+        return node;
+    }
+
+    public void setNode(int node) {
+        this.node = node;
+    }
+
+    public String getSecurityQuestion() {
+        return SecurityQuestion;
+    }
+
+    public void setSecurityQuestion(String securityQuestion) {
+        SecurityQuestion = securityQuestion;
     }
 }

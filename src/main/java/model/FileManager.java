@@ -16,8 +16,8 @@ public class FileManager {
     public ArrayList<Customer> customers ;
     public ArrayList<ResturantOwner> resturantOwners;
     public FileManager(){
-        customers=new ArrayList<>();
-        resturantOwners=new ArrayList<>();
+        customers=Customer.getAllcustomer();
+        resturantOwners=ResturantOwner.getAllResturantOwner();
     }
     public static FileManager getFileManagerInstance(){
         if(fileManagerInstance==null){
@@ -27,10 +27,12 @@ public class FileManager {
     }
     public static void setFileManagerInstance(FileManager a){
         fileManagerInstance=a;
+        Customer.setAllcustomer(fileManagerInstance.customers);
+        ResturantOwner.setAllResturantOwner(fileManagerInstance.resturantOwners);
     }
     public static void saveAllDatas(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        File file = new File("D:\\javaprojects\\project_OOP (1)\\project_OOP\\miow.txt");
+        File file = new File("miow.txt");
         Scanner scanner;
         try {
             FileWriter fileWriter = new FileWriter(file);
@@ -45,7 +47,7 @@ public class FileManager {
     }
     public static void loadAllDatas(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        File file = new File("D:\\javaprojects\\project_OOP (1)\\project_OOP\\miow.txt");
+        File file = new File("miow.txt");
         Scanner scanner;
         try {
             scanner = new Scanner(file);
@@ -55,13 +57,13 @@ public class FileManager {
                 data.append("\n");
             }
             if(data.equals("")==false)
-            FileManager.setFileManagerInstance(gson.fromJson(data.toString(), FileManager.class));
+                FileManager.setFileManagerInstance(gson.fromJson(data.toString(), FileManager.class));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
     public static ArrayList<String> getMapStringArray(){
-        File file = new File("D:\\javaprojects\\project_OOP (1)\\project_OOP\\graph.txt");
+        File file = new File("graph.txt");
         Scanner scanner;
         try {
             scanner = new Scanner(file);
