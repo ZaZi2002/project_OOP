@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class FileManager {
@@ -29,7 +30,7 @@ public class FileManager {
     }
     public static void saveAllDatas(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        File file = new File("AryaPrivateFiles.txt");
+        File file = new File("D:\\javaprojects\\project_OOP (1)\\project_OOP\\miow.txt");
         Scanner scanner;
         try {
             FileWriter fileWriter = new FileWriter(file);
@@ -44,20 +45,35 @@ public class FileManager {
     }
     public static void loadAllDatas(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        File file = new File("AryaPrivateFiles.txt");
+        File file = new File("D:\\javaprojects\\project_OOP (1)\\project_OOP\\miow.txt");
         Scanner scanner;
         try {
-            scanner=new Scanner(file);
+            scanner = new Scanner(file);
             StringBuilder data = new StringBuilder("");
-            while (scanner.hasNextLine()){
+            while (scanner.hasNextLine()) {
                 data.append(scanner.nextLine());
                 data.append("\n");
             }
-            FileManager.setFileManagerInstance(gson.fromJson(data.toString(),FileManager.class));
-        }catch (FileNotFoundException e){
-            throw new RuntimeException(e);
-        }catch (IOException e){
+            if(data.equals("")==false)
+            FileManager.setFileManagerInstance(gson.fromJson(data.toString(), FileManager.class));
+        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
+    public static ArrayList<String> getMapStringArray(){
+        File file = new File("D:\\javaprojects\\project_OOP (1)\\project_OOP\\graph.txt");
+        Scanner scanner;
+        try {
+            scanner = new Scanner(file);
+            ArrayList<String> MapS = new ArrayList<>();
+            while (scanner.hasNextLine()){
+                MapS.add(scanner.nextLine().trim());
+            }
+            MapS.remove(0);
+            return MapS;
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

@@ -62,8 +62,9 @@ static int delayTime;
         else if(m4.matches()){
             FileManager.saveAllDatas();
             return;
-        }
-        else{
+        } else if (  command.equals("adm-arya")) {
+            DevelopersTestClass.Arya();
+        } else{
             System.out.println("Invalid Command");
         }
     }

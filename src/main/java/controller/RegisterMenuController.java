@@ -55,36 +55,15 @@ public class RegisterMenuController {
     }
 
     public void setnewCustomer(String name, String password) {
-        Customer customer;
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        File file = new File("customer.txt");
-        Scanner scanner;
-        try {
-            scanner = new Scanner(file);
-            StringBuilder data = new StringBuilder("");
-            while (scanner.hasNextLine()) {
-                data.append(scanner.nextLine());
-                data.append("\n");
-            }
-            FileManager.setFileManagerInstance(gson.fromJson(data.toString(), FileManager.class));
             boolean checker = true;
-            scanner.close();
             if (checker) {
                 Customer newcustomer = new Customer(name, password);
-                FileWriter fileWriter = new FileWriter(file);
                 FileManager.getFileManagerInstance().customers.add(newcustomer);
-                String write = gson.toJson(FileManager.getFileManagerInstance());
-                fileWriter.write(write);
-                fileWriter.close();
                 System.out.println("Registration was successful");
             } else {
                 System.out.println("This name already exists");
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 }
 
