@@ -1,6 +1,11 @@
 package controller;
 
+
 import view.CostumerMenu;
+import model.Resturant;
+import view.Menu;
+import view.RegisterMenu;
+import view.ResturantMenu;
 
 public class CustomerMenuController {
 
@@ -12,12 +17,27 @@ public class CustomerMenuController {
 
     public String SearchResturant(String name)
 {
-return "";
+    String list;
+    list = Resturant.searchResturant(name);
+   if(list.equals("")){
+       return "there is no resturant with this name";
+   }
+   else{
+       return list;
+   }
 }
+    public int returnindexbyid(int id){
+        int result;
+        result = Resturant.returnindexbyname(id);
+        return result;
+    }
 
-public String Select(int id)
+public void Select(int index)
 {
-    return "";
+    Resturant resturant;
+    resturant = Resturant.returnResturantByIndex(index);
+    ResturantMenu resturantMenu = new ResturantMenu(resturant);
+    resturantMenu.run();
 }
 
 public String AccessOrderHistory()

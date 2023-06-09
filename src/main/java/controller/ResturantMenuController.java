@@ -10,6 +10,10 @@ public class ResturantMenuController {
     private ResturantMenu resturantMenu;
     private Resturant resturant;
 
+    public ResturantMenuController(ResturantMenu resturantMenu) {
+        this.resturantMenu = resturantMenu;
+    }
+
     public String DisplayOpenOrders()
     {
         return "";
